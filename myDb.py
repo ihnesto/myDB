@@ -1,6 +1,10 @@
-import importData from importData
+import sys
 
-i = importData('./data/input/testDb.txt')
+sys.path.append('./classes/import')
+
+from importData import ImportData
+
+i = ImportData('./data/input/testDb.txt')
 
 i.importFromTxt()
 
