@@ -1,6 +1,7 @@
 import sys
 
 sys.path.append('./classes/import')
+sys.path.append('./classes/commands')
 
 from importData import ImportData
 from command import Command

@@ -1,15 +1,16 @@
 class Command :
     def __init__(self, dbs) :
         self.database = dbs
+        
     
     def doCommand(self, cmd) :
-    c = cmd['command']
-    if c == None :
-        return
-    if c == 'find' :
-        self.doFind(cmd)
-    if c == 'remove' :
-        self.doRemove(cmd)
+        c = cmd['command']
+        if c == None :
+            return
+        if c == 'find' :
+            self.doFind(cmd)
+        if c == 'remove' :
+            self.doRemove(cmd)
 
     def doFind(self, cmd) :
         table = cmd['table']
@@ -17,7 +18,8 @@ class Command :
             return
         p = False
         for t in self.database :
-            if t['name'] == table :
+            #print(t)
+            if t['table-name'] == table :
                 p = True
                 db = t
                 break
@@ -25,7 +27,7 @@ class Command :
             return
         cond = cmd['condition']
         if cond == None or cond == '' :
-            self.showAllData(db)
+            #self.showAllData(db)
             return
         for op, val in cond.items() :
             #print(op, val)
@@ -44,15 +46,14 @@ class Command :
     def showEqData(self, db, args) :
             f = args[0]
             val = args[1]
-            print(f, val)
-            flds = db['fields']
+            #print(f, val)
+            #flds = db['fields']
             data = db['data']
-            idx = flds.index(f)
+            #idx = flds.index(f)
             #print(flds)
             for line in data :
-                #print(line)
-                if line[idx] == val :
-                    return line
+                if line[f] == val :
+                    print(line)
 
     def showGtData(self, db, args) :
             f = args[0]
