@@ -41,3 +41,23 @@ req = {
 }
 # выполняем команду
 cmd.doCommand(req)
+
+req = {
+     "command" : "insert",
+     "table" : "sales",
+     "values" : { 'snum' : 1008,
+                   'city' : 'Kiyv',
+                'sname' : "John"
+                 }
+}
+
+cmd.doCommand(req)
+
+req = {
+    "command" : "find",
+    "table" : "sales"
+    
+}
+# выполняем команду
+cmd.doCommand(req)
+

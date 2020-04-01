@@ -4,13 +4,15 @@ class Command :
         
 # анализ, какая команда   
     def doCommand(self, cmd) :
-        c = cmd['command']
-        if c == None :
+        c = cmd.get('command')
+        if c is None :
             return
         if c == 'find' :
             self.doFind(cmd)
         if c == 'remove' :
             self.doRemove(cmd)
+        if c == 'insert' :
+            self.doInsert(cmd)
 
     def doRemove(self, cmd) :
         table = cmd['table']
@@ -52,6 +54,25 @@ class Command :
                 self.showGtData(db, args)
             if op == '<' :
                 self.showLtData(db, args)
+
+    def doInsert(self, cmd) :
+        table = cmd.get('table')
+        if table is None :
+            return
+        p = False
+        for t in self.database :
+            #print(t)
+            if t['table-name'] == table :
+                p = True
+                db = t
+                break
+        if p == False :
+            return
+        val = cmd.get('values')
+        if val is None :
+            return
+        data = db['data']
+        data.append(val)
 
 # обработка команды find
     def doFind(self, cmd) :
