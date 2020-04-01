@@ -17,10 +17,27 @@ cmd = Command(i.getDbs())
 # команда
 req = {
     "command" : "find",
+    "table" : "sales"
+    
+}
+# выполняем команду
+cmd.doCommand(req)
+
+req = {
+    "command" : "remove",
     "table" : "sales",
     "condition" : {
         "=" : ['city', 'London']  
     }
+    
+}
+cmd.doCommand(req)
+
+print()
+req = {
+    "command" : "find",
+    "table" : "sales"
+    
 }
 # выполняем команду
 cmd.doCommand(req)

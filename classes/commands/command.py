@@ -67,9 +67,12 @@ class Command :
                 break
         if p == False :
             return
-        cond = cmd['condition']
-        if cond == None or cond == '' :
-            #self.showAllData(db)
+        # try:
+        #     cond = cmd['condition']
+        # except KeyError :
+        cond = cmd.get('condition')
+        if cond is None :
+            self.showAllData(db)
             return
         for op, val in cond.items() :
             #print(op, val)
