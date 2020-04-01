@@ -12,6 +12,47 @@ class Command :
         if c == 'remove' :
             self.doRemove(cmd)
 
+    def doRemove(self, cmd) :
+        table = cmd['table']
+        if table == None :
+            return
+        p = False
+        for t in self.database :
+            #print(t)
+            if t['table-name'] == table :
+                p = True
+                db = t
+                break
+        if p == False :
+            return
+        cond = cmd['condition']
+        if cond == None or cond == '' :
+            #self.showAllData(db)
+            return
+        for op, val in cond.items() :
+            #print(op, val)
+            args = cond[op]
+            #print(args)
+            #f = args[0]
+            #val = args[1]
+            #print(f, val)
+            if op == '=' :    
+                f = args[0]
+                val = args[1]
+                #print(f, val)
+                #flds = db['fields']
+                data = db['data']
+                #idx = flds.index(f)
+                #print(flds)
+                for line in data :
+                    if line[f] == val :
+                        #print(line)
+                        data.remove(line)
+            if op == '>' :
+                self.showGtData(db, args)
+            if op == '<' :
+                self.showLtData(db, args)
+
 # обработка команды find
     def doFind(self, cmd) :
         table = cmd['table']
