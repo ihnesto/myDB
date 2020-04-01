@@ -2,7 +2,7 @@ class Command :
     def __init__(self, dbs) :
         self.database = dbs
         
-    
+# анализ, какая команда   
     def doCommand(self, cmd) :
         c = cmd['command']
         if c == None :
@@ -12,6 +12,7 @@ class Command :
         if c == 'remove' :
             self.doRemove(cmd)
 
+# обработка команды find
     def doFind(self, cmd) :
         table = cmd['table']
         if table == None :
@@ -42,7 +43,8 @@ class Command :
                 self.showGtData(db, args)
             if op == '<' :
                 self.showLtData(db, args)
-        
+
+# обработка условия(condition) = 
     def showEqData(self, db, args) :
             f = args[0]
             val = args[1]
@@ -55,6 +57,7 @@ class Command :
                 if line[f] == val :
                     print(line)
 
+# обработка условия(condition) >
     def showGtData(self, db, args) :
             f = args[0]
             val = args[1]
@@ -68,6 +71,7 @@ class Command :
                 if line[idx] > val :
                     return line
 
+# обработка условия(condition) <
     def showLtData(self, db, args) :
             f = args[0]
             val = args[1]
@@ -80,7 +84,8 @@ class Command :
                 #print(line)
                 if line[idx] < val :
                     print(line)
-            
+
+# вывод всех данных таблицы
     def showAllData(self, db) :
         data = db['data']
         for i in data :
