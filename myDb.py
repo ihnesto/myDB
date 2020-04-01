@@ -52,7 +52,7 @@ req = {
 }
 
 cmd.doCommand(req)
-
+print()
 req = {
     "command" : "find",
     "table" : "sales"
